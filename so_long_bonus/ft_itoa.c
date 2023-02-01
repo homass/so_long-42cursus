@@ -59,3 +59,68 @@ char	*ft_itoa(long int cast)
 	}
 	return (arr);
 }
+
+//push
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hundred_numb.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hait-hsa <hait-hsa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/27 19:56:30 by hait-hsa          #+#    #+#             */
+/*   Updated: 2023/01/31 18:57:24 by hait-hsa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "linked_list.h"
+
+int helper(t_list *st_a, int c)
+{
+	int i;
+
+	i = 0;
+	while(st_a)
+	{
+		if(st_a->data == c)
+			return 1;
+		st_a = st_a->link;
+	}
+	return 0;
+}
+
+int *get_first_smallest_numbs(t_list *st_a)
+{
+	static int counter;
+	int *arr;
+	int c;
+	int first;
+	int i;
+
+	i = 0;
+	arr = malloc(sizeof(int) * 20);
+	first = get_first_smaller_numb(st_a);
+	arr[counter] = first;
+	c = first;
+	counter++;
+	while(counter < 20)
+	{
+		c++;
+		if(helper(st_a, c))
+			{
+				arr[counter] = c;
+				counter++;
+			}
+	}
+	return arr;
+}
+
+void hundred_numb(t_list **st_a, t_list **st_b)
+{
+	int i;
+	int *arr;
+
+	i = 0;
+	arr = get_first_smallest_numbs(*st_a);
+	
+}
